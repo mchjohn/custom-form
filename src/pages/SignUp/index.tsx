@@ -19,7 +19,7 @@ export function SignUp() {
   } = useSignUp();
 
   function createUser(data: any) {
-    console.log('User data: ', data);
+    console.log('Dados enviado: ', data);
   }
 
   return (

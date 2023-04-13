@@ -24,7 +24,7 @@ export function useSignUp() {
   });
 
   function onSubmit(data: FormData) {
-    console.log('Submitted', data);
+    console.log('Submitted');
   }
 
   function handleToggleShowPassword() {
