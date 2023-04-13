@@ -10,7 +10,7 @@ import { Header, NavLink, SubmitButton, ControlledInput } from '@components/Form
 
 
 export function SignUp() {
-  const { control, handleSubmit } = useSignUp();
+  const { control, errors, handleSubmit } = useSignUp();
 
   function createUser(data: any) {
     console.log('User data: ', data);
@@ -37,6 +37,7 @@ export function SignUp() {
               <ControlledInput
                 name='name'
                 label='Nome'
+                error={errors.name}
                 control={control}
                 isRequired
                 inputProps={{
@@ -46,6 +47,7 @@ export function SignUp() {
               <ControlledInput
                 name='email'
                 label='Email'
+                error={errors.email}
                 isRequired
                 control={control}
                 inputProps={{
@@ -56,6 +58,7 @@ export function SignUp() {
               <ControlledInput
                 name='password'
                 label='Senha'
+                error={errors.password}
                 isRequired
                 control={control}
                 inputProps={{
@@ -66,6 +69,7 @@ export function SignUp() {
               <ControlledInput
                 name='confirm_password'
                 label='Confirmar senha'
+                error={errors.confirm_password}
                 isRequired
                 control={control}
                 inputProps={{
