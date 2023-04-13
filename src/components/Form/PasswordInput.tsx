@@ -5,20 +5,18 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
-type Props = {
-  placeholder?: string;
-  showPassword?: boolean;
-  toggleShowPassword?: () => void;
-}
+import { CustomInputProps } from "./InputForm";
+
+type Props = Partial<CustomInputProps>;
 
 export function PasswordInput({
-  placeholder,
   showPassword,
-  toggleShowPassword
+  toggleShowPassword,
+  ...rest
 }: Props) {
   return (
     <>
-      <Input type={showPassword ? 'text' : 'password'} placeholder={placeholder} />
+      <Input type={showPassword ? 'text' : 'password'} {...rest} />
       <InputRightElement h='full'>
         <Button
           variant='ghost'

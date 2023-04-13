@@ -2,46 +2,40 @@ import {
   Input,
   FormLabel,
   InputGroup,
+  InputProps,
   FormControl,
+  FormControlProps,
 } from "@chakra-ui/react";
-import { HTMLInputTypeAttribute } from "react";
 
 import { PasswordInput } from "./PasswordInput";
 
-type Props = {
-  id: string;
+export type CustomInputProps = FormControlProps & InputProps & {
   label: string;
-  type?: HTMLInputTypeAttribute;
-  isRequired?: boolean;
   isPassword?: boolean;
-  placeholder?: string;
   showPassword?: boolean;
   toggleShowPassword?: () => void;
-}
+};
 
 export function InputForm({
-  id,
-  type,
   label,
-  isRequired,
   isPassword,
-  placeholder,
   showPassword,
   toggleShowPassword,
-}: Props) {
+  ...rest
+}: CustomInputProps) {
   return (
-    <FormControl id={id} isRequired={isRequired}>
+    <FormControl {...rest}>
       <FormLabel>{label}</FormLabel>
 
       <InputGroup>
         {isPassword ?
           <PasswordInput
-            placeholder={placeholder}
             showPassword={showPassword}
             toggleShowPassword={toggleShowPassword}
+            {...rest}
           />
           :
-          <Input type={type} placeholder={placeholder} />
+          <Input {...rest} />
         }
       </InputGroup>
     </FormControl>
