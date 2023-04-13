@@ -10,7 +10,13 @@ import { Header, NavLink, SubmitButton, ControlledInput } from '@components/Form
 
 
 export function SignUp() {
-  const { control, errors, handleSubmit } = useSignUp();
+  const {
+    control,
+    errors,
+    showPassword,
+    handleSubmit,
+    handleToggleShowPassword
+  } = useSignUp();
 
   function createUser(data: any) {
     console.log('User data: ', data);
@@ -60,22 +66,26 @@ export function SignUp() {
                 label='Senha'
                 error={errors.password}
                 isRequired
+                isPassword
                 control={control}
                 inputProps={{
-                  type: 'password',
+                  type: showPassword,
                   placeholder: 'Digite sua senha',
                 }}
+                handleToggleShowPassword={handleToggleShowPassword}
               />
               <ControlledInput
                 name='confirm_password'
                 label='Confirmar senha'
                 error={errors.confirm_password}
                 isRequired
+                isPassword
                 control={control}
                 inputProps={{
-                  type: 'password',
+                  type: showPassword,
                   placeholder: 'Confirme sua senha',
                 }}
+                handleToggleShowPassword={handleToggleShowPassword}
               />
 
               <SubmitButton title='Cadastrar' />

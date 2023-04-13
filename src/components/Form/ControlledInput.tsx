@@ -1,9 +1,6 @@
 import {
-  FormLabel,
-  InputGroup,
-  FormControl as ChakraFormControl,
-  FormControlProps,
   InputProps,
+  FormControlProps,
 } from "@chakra-ui/react";
 import { Controller, Control, FieldError } from "react-hook-form";
 
@@ -16,7 +13,9 @@ export type ControlledInputProps = FormControlProps & {
   label: string;
   error?: FieldError;
   control: Control<FormData>;
+  isPassword?: boolean;
   inputProps?: InputProps;
+  handleToggleShowPassword?: () => void;
 };
 
 export function ControlledInput({
@@ -24,7 +23,9 @@ export function ControlledInput({
   label,
   error,
   control,
+  isPassword,
   inputProps,
+  handleToggleShowPassword,
   ...rest
 }: ControlledInputProps) {
   return (
@@ -36,11 +37,13 @@ export function ControlledInput({
           label={label}
           error={error}
           isInvalid={!!error?.message}
+          isPassword={isPassword}
           inputProps={{
             value: value,
             onChange: onChange,
             ...inputProps
           }}
+          handleToggleShowPassword={handleToggleShowPassword}
           {...rest}
         />
       )}

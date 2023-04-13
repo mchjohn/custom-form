@@ -7,7 +7,7 @@ import { FormData } from '@interface/formData';
 import { schema } from './schema';
 
 export function useSignUp() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<'password' | 'text'>('password');
 
   const {
     control,
@@ -28,10 +28,8 @@ export function useSignUp() {
   }
 
   function handleToggleShowPassword() {
-    setShowPassword(prevState => !prevState);
+    setShowPassword(prevState => prevState === 'password' ? 'text' : 'password');
   }
-
-  console.log('Errors: ', errors)
 
   return {
     errors,
