@@ -3,7 +3,11 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-export function ButtonForm() {
+type Props = {
+  title: string
+}
+
+export function SubmitButton({ title }: Props) {
   return (
     <Stack spacing='10' pt='2'>
       <Button
@@ -14,8 +18,9 @@ export function ButtonForm() {
         _hover={{
           bg: 'pink.500',
         }}
+        type='submit'
       >
-        Cadastrar
+        {title}
       </Button>
     </Stack>
   );

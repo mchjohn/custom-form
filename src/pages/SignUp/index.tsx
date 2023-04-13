@@ -4,13 +4,18 @@ import {
   Stack,
 } from '@chakra-ui/react';
 
-import { InputsForm } from './InputsForm';
+import { useSignUp } from './useSignUp';
 
-import { ButtonLink } from '@components/Form/ButtonLink';
-import { HeaderForm } from '@components/Form/HeaderForm';
-import { ButtonForm } from '@components/Form/ButtonForm';
+import { Header, NavLink, SubmitButton, ControlledInput } from '@components/Form';
+
 
 export function SignUp() {
+  const { control, handleSubmit } = useSignUp();
+
+  function createUser(data: any) {
+    console.log('User data: ', data);
+  }
+
   return (
     <Flex
       minH='100vh'
@@ -18,7 +23,7 @@ export function SignUp() {
       justify='center'
     >
       <Stack spacing='8' py='12' px='6'>
-        <HeaderForm />
+        <Header title='Cadastre-se' subtitle='e aproveite todos os recursos' />
 
         <Box
           p='8'
@@ -27,13 +32,53 @@ export function SignUp() {
           rounded='lg'
           boxShadow='lg'
         >
-          <Stack spacing='4'>
-            <InputsForm />
+          <form onSubmit={handleSubmit(createUser)}>
+            <Stack spacing='4'>
+              <ControlledInput
+                name='name'
+                label='Nome'
+                control={control}
+                isRequired
+                inputProps={{
+                  placeholder: 'Digite seu nome',
+                }}
+              />
+              <ControlledInput
+                name='email'
+                label='Email'
+                isRequired
+                control={control}
+                inputProps={{
+                  type: 'email',
+                  placeholder: 'Digite seu email',
+                }}
+              />
+              <ControlledInput
+                name='password'
+                label='Senha'
+                isRequired
+                control={control}
+                inputProps={{
+                  type: 'password',
+                  placeholder: 'Digite sua senha',
+                }}
+              />
+              <ControlledInput
+                name='confirm_password'
+                label='Confirmar senha'
+                isRequired
+                control={control}
+                inputProps={{
+                  type: 'password',
+                  placeholder: 'Confirme sua senha',
+                }}
+              />
 
-            <ButtonForm />
+              <SubmitButton title='Cadastrar' />
 
-            <ButtonLink />
-          </Stack>
+              <NavLink text='Já tem conta?' textLink='Entrar' />
+            </Stack>
+          </form>
         </Box>
       </Stack>
     </Flex>

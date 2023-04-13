@@ -1,18 +1,22 @@
 import {
-  Link,
   Text,
   Stack,
   Heading,
 } from '@chakra-ui/react';
 
-export function HeaderForm() {
+type Props = {
+  title: string;
+  subtitle: string;
+}
+
+export function Header({ title, subtitle }: Props) {
   return (
     <Stack align='center'>
       <Heading fontSize='4xl' textAlign='center'>
-        Cadastre-se
+        {title}
       </Heading>
       <Text fontSize='lg' color='gray.600'>
-        e aproveite todos os recursos
+        {subtitle}
       </Text>
     </Stack>
   );
